@@ -1,0 +1,18 @@
+{
+  "name": "somtoday-ical-formatter",
+  "version": "1.0.0",
+  "description": "Format the SomToday iCal to a human readable form",
+  "main": "main.js",
+  "scripts": {
+    "run": "node main"
+  },
+  "author": "Underlyingglitch",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cron": "^2.0.0",
+    "dotenv": "^16.0.2",
+    "ics": "^2.35.0",
+    "node-ical": "^0.15.1"
+  }
+}

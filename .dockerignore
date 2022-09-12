@@ -1,0 +1,7 @@
+node_modules
+.env
+.env.template
+.gitattributes
+.gitignore
+LICENSE
+README.md

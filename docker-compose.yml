@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  somtoday-ical-formatter:
+    image: underlyingglitch/somtoday-ical-formatter:latest
+    env_file:
+      - .env
