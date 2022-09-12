@@ -4,6 +4,9 @@ NodeJS script om de iCal gegevens van SomToday om te zetten naar een leesbaar fo
 
 De nieuwe gegevens worden iedere 15 minuten uit SomToday opgehaald.
 
+## Dit project wordt niet actief onderhouden!
+Omdat ik mijn aandacht heb gevestigd op een groter project omtrent SomToday zal ik dit project niet langer onderhouden. Meer informatie [hier](https://github.com/FusionApp-Project)
+
 ## Hoe te gebruiken
 
 ### Stel de webserver in
