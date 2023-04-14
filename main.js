@@ -2,6 +2,7 @@ const axios = require('axios').default
 const CronJob = require('cron').CronJob
 const ical = require('node-ical')
 const ics = require('ics')
+const fs = require('fs')
 
 require('dotenv').config()
 
@@ -32,23 +33,26 @@ function main() {
 
         for (const event of Object.values(events)) {
             if (event.type != "VEVENT") continue
+            if (event.summary.includes('Act')) continue
 
             let desc = event.summary.split(' - ')
-            let start = new Date(event.start)
-            let end = new Date(event.end)
             let vak = get_vak(event.summary)
             let teacher = desc[2]
             let location = `Lokaal ${event.location}`
             let status = "CONFIRMED"
+            let title = (desc.length == 3) ? `${vak} - ${teacher}` : event.summary
+            let start = new Date(event.start)
+            let end = new Date(event.end)
+            let uid = event.uid.replace('somtoday.nl', 'underlyingglitch')
 
             let parsed_event = {
-                title: `${vak} - ${teacher}`,
+                title: title,
                 location: location,
                 status: status,
                 start: [start.getFullYear(), start.getMonth() + 1, start.getDate(), start.getHours(), start.getMinutes()],
                 end: [end.getFullYear(), end.getMonth() + 1, end.getDate(), end.getHours(), end.getMinutes()],
                 description: event.summary,
-                uid: event.uid.replace('somtoday.nl', 'underlyingglitch')
+                uid: uid
             }
             if (status != "CANCELLED") {
                 parsed_event.alarms = [{
@@ -83,4 +87,5 @@ function get_vak(x) {
 
 console.log('Running somtoday-ical-formatter with arguments: ')
 console.log(process.env)
+// main()
 new CronJob('*/15 * * * *', main, null, false, 'Europe/Amsterdam').start()
